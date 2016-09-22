@@ -106,9 +106,9 @@ class Application extends Component {
 					<br/>
 					<div className="menu well text-center">
 							<h1 className="text-center">N Y T React</h1>
-							<Link to="/"> Home |</Link>
-							<Link to="/search"> Search |</Link>
-							<Link to="/saved"> Saved </Link>
+							<Link to="/" activeClassName="active"> Home |</Link>
+							<Link to="/search" activeClassName="active"> Search |</Link>
+							<Link to="/saved" activeClassName="active"> Saved </Link>
 					</div>
 					<div className="content well">
 						{

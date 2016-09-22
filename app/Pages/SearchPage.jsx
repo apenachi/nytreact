@@ -1,7 +1,6 @@
 import React, { Component, cloneElement } from 'react';
-
 import Search from '../Components/Search';
-
+import ArticleList from '../Components/ArticleList';
 
 class SearchPage extends Component {
 
@@ -19,9 +18,6 @@ class SearchPage extends Component {
 				</div>
 				<div className="row">
 					<Search setSearch={this.props.setSearch}/>
-				</div>
-				<div className="row">
-					<ArticleList articles={articles} saveArticle={saveArticle}/>
 				</div>
 			</div>
 		);

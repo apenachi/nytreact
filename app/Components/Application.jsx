@@ -79,7 +79,6 @@ class Application extends Component {
 					})
 				}
 			}.bind(this))
-
 		}
 	}
 

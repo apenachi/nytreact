@@ -20,6 +20,9 @@ class SearchPage extends Component {
 				<div className="row">
 					<Search setSearch={this.props.setSearch}/>
 				</div>
+				<div className="row">
+					<ArticleList articles={articles} saveArticle={saveArticle}/>
+				</div>
 			</div>
 		);
 

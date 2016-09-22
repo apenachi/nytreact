@@ -59,14 +59,25 @@ class Application extends Component {
 		if(prevState.search != this.state.search){
 			helpers.fetchArticles(this.state.search)
 				.then(function(data){
-					if (data != this.state.articles)
+					if (data !== this.state.articles)
 					{
 						console.log(data);
 						this.setState({
 							articles: data
 						})		
 					}
+					console.log('componentDidUpdate - getArticle');
+					helpers.getArticle()
+						.then(function(response){
+							if (response !== this.state.savedArticles){
+								console.log ("savedArticles - componentDidUpdate", response.data);
+								this.setState({
+									savedArticles: response.data
+								})
+							}
+						}.bind(this))
 				}.bind(this))
+<<<<<<< HEAD
 
 
 		console.log('componentDidMount');
@@ -79,6 +90,8 @@ class Application extends Component {
 					})
 				}
 			}.bind(this))
+=======
+>>>>>>> ca6df9d11f7b433252e2086ede758a658be15c9a
 		}
 	}
 
@@ -88,7 +101,7 @@ class Application extends Component {
 		helpers.getArticle()
 			.then(function(response){
 				if (response != this.state.savedArticles){
-					console.log ("savedArticles", response.data);
+					console.log ("savedArticles - componentDidMount", response.data);
 					this.setState({
 						savedArticles: response.data
 					})
@@ -105,9 +118,9 @@ class Application extends Component {
 					<br/>
 					<div className="menu well text-center">
 							<h1 className="text-center">N Y T React</h1>
-							<Link to="/"> Home |</Link>
-							<Link to="/search"> Search |</Link>
-							<Link to="/saved"> Saved </Link>
+							<Link to="/" activeClassName="active"> Home </Link>
+							<Link to="/search" activeClassName="active"> Search </Link>
+							<Link to="/saved" activeClassName="active"> Saved </Link>
 					</div>
 					<div className="content well">
 						{

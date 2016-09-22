@@ -6,15 +6,30 @@
 
 	<!-- Here we include bootstrap. This will be made available to all of the generated HTML/JS that React generates-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style>
+	a {
+	  background-color: #FFF;
+	  font-weight: bold;
+	  padding: 10px;
+	  display: inline-block;
+	}
+	a:hover {
+	  background-color: #ABA;	
+	}
+	.active {
+		 background-color: #BCF;
+	}		
+	</style>
+	
 </head>
 
 <body>
 	<div class="container" id="app">
 		
-		<!-- This is where React will deploy the contents it generates -->
+		<!-- This is where React will deploy react components -->
 
 	</div>
-	<!-- All of our JS code will be transpiled into this bundle.js file -->
+	<!-- react will will be transpiled all js code into this bundle.js file -->
 	<script src="bundle.js"></script>
 	
 </body>

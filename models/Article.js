@@ -6,15 +6,15 @@ var ArticleSchema = new Schema({
     type: Date,
     default: Date.now()
   },
-	NYTTitle: {
-		type:String
-	},
-	NYTDate: {
-		type: String
-	},
-	NYTUrl: {
-		type: String
-	},
+  NYTTitle: {
+     type:String
+  },
+  NYTDate: {
+     type: String
+  },
+   NYTUrl: {
+     type: String
+  },
   NYTId: {
     type: String
   }

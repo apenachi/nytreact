@@ -48,8 +48,7 @@ app.get('/api/', function(req, res) {
   Article.find({}, function(err, doc){
       if(err){
         console.log(err);
-      }
-      else {
+      } else {
         res.send(doc);
       }
     })
@@ -62,8 +61,7 @@ app.post('/api/', function(req, res){
   Article.create(newArticle, function(err){
     if(err){
       console.log(err);
-    }
-    else {
+    } else {
       res.send("Saved Article");
     }
   })

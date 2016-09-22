@@ -77,21 +77,6 @@ class Application extends Component {
 							}
 						}.bind(this))
 				}.bind(this))
-<<<<<<< HEAD
-
-
-		console.log('componentDidMount');
-		helpers.getArticle()
-			.then(function(response){
-				if (response != this.state.savedArticles){
-					console.log ("savedArticles", response.data);
-					this.setState({
-						savedArticles: response.data
-					})
-				}
-			}.bind(this))
-=======
->>>>>>> ca6df9d11f7b433252e2086ede758a658be15c9a
 		}
 	}
 

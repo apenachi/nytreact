@@ -17,9 +17,22 @@ app.use(bodyParser.json({type:'application/vnd.api+json'}));
 
 app.use(express.static('./public'));
 
-mongoose.connect('mongodb://localhost/nytReactDB');
+// mongoose.connect('mongodb://localhost/craigslist-scraper');
+var mongoUrl = process.env.MONGODB_URI || 'mongodb://heroku_qm0ktctw:fg2sc6bfdlde5921be3qef5op9@ds035776.mlab.com:35776/heroku_qm0ktctw'
+console.log(mongoUrl);
+
+var mongoDB = 'mongodb://' + mongoUrl + '/nytReactDB'
+
+// mongoose.connect('mongodb://localhost/nytReactDB');
+mongoose.connect(mongoDB, function(err) {
+  if (err) {
+    console.log ('ERROR connecting to: ' + mongoDB + ' . ' + err);
+  } else {
+    console.log ('Succeeded connected to: ' + mongoDB);
+  }
+});
+// mongoose.connect('mongodb://localhost/nytReactDB');
 // mongod --dbpath /usr/local/lib/MongoDB/data/ --profile 1 --slowms 2000
-// mongoose.connect('mongodb://admin:codingrocks@ds023664.mlab.com:23664/reactlocate');
 var db = mongoose.connection;
 
 db.on('error', function (err) {
@@ -30,13 +43,8 @@ db.once('open', function () {
   console.log('Mongoose connection successful.');
 });
 
-// app.get('/', function(req, res){
-//   res.sendFile('./public');
-// })
-
 app.get('/api/', function(req, res) {
   console.log(' GET  /api/')
-  // We will find all the records, sort it in descending order, then limit the records to 5
   Article.find({}, function(err, doc){
       if(err){
         console.log(err);
@@ -51,7 +59,6 @@ app.post('/api/', function(req, res){
   var newArticle = new Article(req.body.article);
   console.log('newArticle', newArticle);
   console.log(req.body.article)
-  
   Article.create(newArticle, function(err){
     if(err){
       console.log(err);
@@ -62,7 +69,6 @@ app.post('/api/', function(req, res){
   })
 });
 
-// Listener
 app.listen(PORT, function() {
   console.log("App listening on PORT: " + PORT);
 });

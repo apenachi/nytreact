@@ -25553,22 +25553,21 @@
 				console.log('componentDidUpdate - Application');
 				if (prevState.search != this.state.search) {
 					_helpers2.default.fetchArticles(this.state.search).then(function (data) {
-						if (data != this.state.articles) {
+						if (data !== this.state.articles) {
 							console.log(data);
 							this.setState({
 								articles: data
 							});
 						}
-					}.bind(this));
-
-					console.log('componentDidMount');
-					_helpers2.default.getArticle().then(function (response) {
-						if (response != this.state.savedArticles) {
-							console.log("savedArticles", response.data);
-							this.setState({
-								savedArticles: response.data
-							});
-						}
+						console.log('componentDidUpdate - getArticle');
+						_helpers2.default.getArticle().then(function (response) {
+							if (response !== this.state.savedArticles) {
+								console.log("savedArticles - componentDidUpdate", response.data);
+								this.setState({
+									savedArticles: response.data
+								});
+							}
+						}.bind(this));
 					}.bind(this));
 				}
 			}
@@ -25579,7 +25578,7 @@
 				console.log('componentDidMount');
 				_helpers2.default.getArticle().then(function (response) {
 					if (response != this.state.savedArticles) {
-						console.log("savedArticles", response.data);
+						console.log("savedArticles - componentDidMount", response.data);
 						this.setState({
 							savedArticles: response.data
 						});
@@ -25610,17 +25609,17 @@
 						),
 						_react2.default.createElement(
 							_reactRouter.Link,
-							{ to: '/' },
-							' Home |'
+							{ to: '/', activeClassName: 'active' },
+							' Home '
 						),
 						_react2.default.createElement(
 							_reactRouter.Link,
-							{ to: '/search' },
-							' Search |'
+							{ to: '/search', activeClassName: 'active' },
+							' Search '
 						),
 						_react2.default.createElement(
 							_reactRouter.Link,
-							{ to: '/saved' },
+							{ to: '/saved', activeClassName: 'active' },
 							' Saved '
 						)
 					),
@@ -27105,24 +27104,20 @@
 						'div',
 						{ className: 'row' },
 						_react2.default.createElement(
-							'h2',
+							'h4',
 							null,
 							'News Finder! SearchPage'
-						),
-						_react2.default.createElement(
-							'p',
-							null,
-							_react2.default.createElement(
-								'em',
-								null,
-								'Enter a landmark to search for its exact address (ex: "Eiffel Tower").'
-							)
 						)
 					),
 					_react2.default.createElement(
 						'div',
 						{ className: 'row' },
 						_react2.default.createElement(_Search2.default, { setSearch: this.props.setSearch })
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'row' },
+						_react2.default.createElement(ArticleList, { articles: articles, saveArticle: saveArticle })
 					)
 				);
 			}

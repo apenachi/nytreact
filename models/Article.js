@@ -2,15 +2,22 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ArticleSchema = new Schema({
-	title: {
+  createdAt: {
+    type: Date,
+    default: Date.now()
+  },
+	NYTTitle: {
 		type:String
 	},
-	date: {
-		type: Date
+	NYTDate: {
+		type: String
 	},
-	url: {
-		type: Date
-	}
+	NYTUrl: {
+		type: String
+	},
+  NYTId: {
+    type: String
+  }
 });
 
 var Article = mongoose.model('Article', ArticleSchema);

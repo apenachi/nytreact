@@ -1,49 +1,23 @@
-import React, { Component, cloneElement } from 'react';
-import { Link } from 'react-router';
-// import Search from '../Components/Search';
+import React, { Component } from 'react';
 
-class IndexPage extends Component {
-
+class MainPage extends Component {
+	
 	constructor(props){
-
 		super(props);
-
-		this.state = {search: ''}
-
-		this.setSearch = this.setSearch.bind(this);
-	}
-
-	setSearch(search){
-		this.setState({search:search})
 	}
 
 	render() {
-		const { children, articles } = this.props;
+		console.log('Main Page', this.props);
+		// const {articles, search, saveArticle} = this.props;
 		return (
-			<div>
-				<h1>Main Page</h1>
-				<Link to="/search"> Search </Link>
-				<Link to="/saved"> Saved </Link>
-				<div className="container">
-					<div className="row">
-						<div className="jumbotron">
-							<h2 className="text-center">News Finder!</h2>
-							<p className="text-center"><em>Enter a landmark to search for its exact address (ex: "Eiffel Tower").</em></p>
-						</div>
-						<div className="col-md-12">
-							{/*<Search setSearch={this.setSearch}/>*/}
-						</div>
-					</div>
-				</div>				
-				{
-					cloneElement(children, {
-						articles: articles,
-					})
-				}
+			<div className="MainPage">
+				<div className="row">
+					<h2 className="text-center">News Finder! - MainPage</h2>
+					<p className="text-center"><em>Welcome to the news search engine .. </em></p>
+				</div>
 			</div>
 		);
 
 	}
 }
-
-export default IndexPage;
+export default MainPage;

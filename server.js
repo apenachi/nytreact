@@ -17,9 +17,9 @@ app.use(bodyParser.json({type:'application/vnd.api+json'}));
 
 app.use(express.static('./public'));
 
-// mongoose.connect('mongodb://localhost/nytReactDB');
-
-mongoose.connect('mongodb://admin:codingrocks@ds023664.mlab.com:23664/reactlocate');
+mongoose.connect('mongodb://localhost/nytReactDB');
+// mongod --dbpath /usr/local/lib/MongoDB/data/ --profile 1 --slowms 2000
+// mongoose.connect('mongodb://admin:codingrocks@ds023664.mlab.com:23664/reactlocate');
 var db = mongoose.connection;
 
 db.on('error', function (err) {
@@ -35,11 +35,9 @@ db.once('open', function () {
 // })
 
 app.get('/api/', function(req, res) {
-
+  console.log(' GET  /api/')
   // We will find all the records, sort it in descending order, then limit the records to 5
-  Article.find({}).sort([['date', 'descending']]).limit(20)
-    .exec(function(err, doc){
-
+  Article.find({}, function(err, doc){
       if(err){
         console.log(err);
       }
@@ -50,17 +48,16 @@ app.get('/api/', function(req, res) {
 });
 
 app.post('/api/', function(req, res){
-  var newSearch = new Article(req.body);
-  console.log("BODY: " + req.body.location);
-
-  // Here we'll save the location based on the JSON input. 
-  // We'll use Date.now() to always get the current date time
-  Article.create({"location": req.body.location, "date": Date.now()}, function(err){
+  var newArticle = new Article(req.body.article);
+  console.log('newArticle', newArticle);
+  console.log(req.body.article)
+  
+  Article.create(newArticle, function(err){
     if(err){
       console.log(err);
     }
     else {
-      res.send("Saved Search");
+      res.send("Saved Article");
     }
   })
 });

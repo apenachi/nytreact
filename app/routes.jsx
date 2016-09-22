@@ -8,10 +8,9 @@ import SavedPage from './Pages/SavedPage';
 
 export default (
 	<Route component={Application}>
-		<Route path="/" component={MainPage}>
-			<Route path="/search" component={SearchPage} />
-			<Route path="/saved" component={SavedPage} />
-		</Route>
-		<IndexRoute component={MainPage}/>		
+		<Route path="/" component={MainPage}></Route>
+		<Route path="search" component={SearchPage}></Route>
+		<Route path="saved" component={SavedPage}></Route>
+    <IndexRoute component={MainPage}/>    
 	</Route>
 );

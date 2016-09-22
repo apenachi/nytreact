@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
 import ArticleList from '../Components/ArticleList';
 
-class CompletedPage extends Component {
+class SavedPage extends Component {
+	
+	constructor(props){
+		super(props);
+	}
 
 	render() {
-		console.log(this.props)
-		const { articles } = this.props;
+		console.log('Saved Page', this.props)
+		const { articles, saveArticle } = this.props;
 
 		return (
-			<div>
-				<h1>Saved Page</h1>
-				<ArticleList articles={articles}/>
+			<div className="SavedPage">
+					<div className="row">
+					<h1>Saved Page</h1>
+					<ArticleList articles={articles} saveArticle={saveArticle}/>
+				</div>
 			</div>
 		);
 
 	}
 }
 
-export default CompletedPage;
+export default SavedPage;

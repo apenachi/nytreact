@@ -1,13 +1,29 @@
-import React, { Component } from 'react';
+import React, { Component, cloneElement } from 'react';
 
-class ActivePage extends Component {
+import Search from '../Components/Search';
+
+
+class SearchPage extends Component {
+
+	constructor(props){
+		super(props);
+	}
 
 	render() {
+		console.log('Search Page', this.props);
+
 		return (
-			<h1>Search Page</h1>
+			<div className="SearchPage text-center">
+				<div className="row">
+					<h4>News Finder! SearchPage</h4>
+				</div>
+				<div className="row">
+					<Search setSearch={this.props.setSearch}/>
+				</div>
+			</div>
 		);
 
 	}
 }
 
-export default ActivePage;
+export default SearchPage;

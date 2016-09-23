@@ -43,6 +43,17 @@ db.once('open', function () {
   console.log('Mongoose connection successful.');
 });
 
+app.get('/api/drop', function(req, res) {
+  console.log('GET /api/drop');
+  Article.remove({}, function(err) {
+    if(err) {
+      res.send('Could not remove Articles')
+    } else {
+      res.send('Articles Removed')
+    }
+  });
+});
+
 app.get('/api/', function(req, res) {
   console.log(' GET  /api/')
   Article.find({}, function(err, doc){

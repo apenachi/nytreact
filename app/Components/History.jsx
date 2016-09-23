@@ -11,7 +11,7 @@ class History extends Component {
     return(
       <div className="panel panel-default">
         <div className="panel-heading">
-          <h3 className="panel-title text-center">Saved History</h3>
+          <h3 className="panel-title text-center">Artciles Currently Saved</h3>
         </div>
         {
           savedArticles.map((article) =>

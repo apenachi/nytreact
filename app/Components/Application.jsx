@@ -1,8 +1,9 @@
 import React, { Component, cloneElement } from 'react';
 import helpers from '../helpers';
 import {Link} from 'react-router';
+import ArticleList from './ArticleList';
 import History from './History';
-
+ 
 class Application extends Component {
 
 	constructor(props){
@@ -41,42 +42,42 @@ class Application extends Component {
 	setSearch(search){
 		this.setState({search:search})
 	}
-
+	
+	dropArticle() {
+		helpers.dropArticle()
+			.then(function(response) {
+				console.log('from server: ', response);
+				this.setState({search:''});
+			}.bind(this))
+	}
 	saveArticle(article) {
 		console.log('saveArticle', article);
 		console.log('saveArticle - Application');
 		helpers.postArticle(article)
 			.then(function(data){
+				// this.setState({	articles: data })
 				console.log('after mongodb')
-				this.setState({
-					articles: data
-				})				
+				helpers.getArticle()
+					.then(function(response){
+						if (response !== this.state.savedArticles){
+							console.log ("saveArticle-getArticle", response.data);
+							this.setState({	savedArticles: response.data })
+						}
+					}.bind(this))
 			}.bind(this))
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		console.log('componentDidUpdate - Application');
 		if(prevState.search != this.state.search){
 			helpers.fetchArticles(this.state.search)
 				.then(function(data){
-					if (data !== this.state.articles)
-					{
-						console.log(data);
-						this.setState({
-							articles: data
-						})		
+					if (data !== this.state.articles){
+						console.log('componentDidUpdate - Application');
+						this.setState({ articles: data })		
 					}
-					console.log('componentDidUpdate - getArticle');
-					helpers.getArticle()
-						.then(function(response){
-							if (response !== this.state.savedArticles){
-								console.log ("savedArticles - componentDidUpdate", response.data);
-								this.setState({
-									savedArticles: response.data
-								})
-							}
-						}.bind(this))
+					this.setState({search:''})
 				}.bind(this))
+			
 		}
 	}
 
@@ -85,18 +86,16 @@ class Application extends Component {
 		console.log('componentDidMount');
 		helpers.getArticle()
 			.then(function(response){
-				if (response != this.state.savedArticles){
+			//	if (response != this.state.savedArticles){
 					console.log ("savedArticles - componentDidMount", response.data);
-					this.setState({
-						savedArticles: response.data
-					})
-				}
-			}.bind(this))
+					this.setState({ savedArticles: response.data })
+			//	}
+		}.bind(this))
 	}
 
 	render() {
 		const { children } = this.props;
-		const { articles, search, savedArticles } = this.state;
+		const { articles, savedArticles } = this.state;
 
 		return (
 				<div className="Application">
@@ -106,20 +105,27 @@ class Application extends Component {
 							<Link to="/" activeClassName="active"> Home </Link>
 							<Link to="/search" activeClassName="active"> Search </Link>
 							<Link to="/saved" activeClassName="active"> Saved </Link>
+							<br/><br/>
+							<p>Proceed with caution ..this will <strong>delete</strong> from database</p>
+							<button className="btn btn-danger" onClick={this.dropArticle}> Drop </button>
 					</div>
 					<div className="content well">
 						{
 							cloneElement(children, {
 								articles: articles,
-								search: search,
+								savedArticles: savedArticles,
 								setSearch: this.setSearch,
 								saveArticle: this.saveArticle
 							})
 						}
+						<ArticleList articles={articles} saveArticle={this.saveArticle}/>
+					</div>
+					{/*<div className="content well">
+						<ArticleList articles={articles} saveArticle={this.saveArticle}/>
 					</div>
 					<div className="content well">
 						<History savedArticles={savedArticles}/>
-					</div>
+					</div>*/}
 				</div>
 		);
 

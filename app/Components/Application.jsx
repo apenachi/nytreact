@@ -117,6 +117,9 @@ class Application extends Component {
 						}
 					</div>
 					<div className="content well">
+						<ArticleList articles={articles} saveArticle={saveArticle}/>
+					</div>
+					<div className="content well">
 						<History savedArticles={savedArticles}/>
 					</div>
 				</div>

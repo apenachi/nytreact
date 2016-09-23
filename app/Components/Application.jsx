@@ -77,10 +77,10 @@ class Application extends Component {
 		console.log('componentDidMount');
 		helpers.getArticle()
 			.then(function(response){
-				if (response != this.state.savedArticles){
+			//	if (response != this.state.savedArticles){
 					console.log ("savedArticles - componentDidMount", response.data);
 					this.setState({ savedArticles: response.data })
-				}
+			//	}
 		}.bind(this))
 	}
 

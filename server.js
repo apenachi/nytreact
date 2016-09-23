@@ -43,6 +43,17 @@ db.once('open', function () {
   console.log('Mongoose connection successful.');
 });
 
+app.get('/api/drop', function(req, res) {
+  console.log('GET /api/drop');
+  db.dropCollection('Article', function(err, result) {
+    if(err) {
+      res.send('Could not drop Article Colletion')
+    } else {
+      res.send('Article Collection Dropped')
+    }
+  });
+});
+
 app.get('/api/', function(req, res) {
   console.log(' GET  /api/')
   Article.find({}, function(err, doc){

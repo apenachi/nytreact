@@ -45,13 +45,13 @@ db.once('open', function () {
 
 app.get('/api/drop', function(req, res) {
   console.log('GET /api/drop');
-  db.dropCollection('Article', function(err, result) {
+  db.collections['Article'].drop( function(err) {
     if(err) {
       res.send('Could not drop Article Colletion')
     } else {
       res.send('Article Collection Dropped')
     }
-  });
+  })
 });
 
 app.get('/api/', function(req, res) {

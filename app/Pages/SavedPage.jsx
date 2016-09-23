@@ -12,9 +12,9 @@ class SavedPage extends Component {
 		const { articles, saveArticle } = this.props;
 
 		return (
-			<div className="SavedPage">
-					<div className="row">
-					<h1>Saved Page</h1>
+			<div className="SavedPage text-center">
+				<div className="row">
+					<h1>These articles were found ....</h1>
 					<ArticleList articles={articles} saveArticle={saveArticle}/>
 				</div>
 			</div>

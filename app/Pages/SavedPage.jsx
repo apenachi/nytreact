@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ArticleList from '../Components/ArticleList';
+import History from '../Components/History';
 
 class SavedPage extends Component {
 	
@@ -17,6 +18,9 @@ class SavedPage extends Component {
 					<h1>These articles were found ....</h1>
 					<ArticleList articles={articles} saveArticle={saveArticle}/>
 				</div>
+				<div className="row">
+					<History savedArticles={savedArticles}/>
+				<div className="row">
 			</div>
 		);
 

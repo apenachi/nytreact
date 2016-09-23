@@ -10,7 +10,7 @@ class SavedPage extends Component {
 
 	render() {
 		console.log('Saved Page', this.props)
-		const { articles, saveArticle } = this.props;
+		const { articles, saveArticle, savedArticles } = this.props;
 
 		return (
 			<div className="SavedPage text-center">

@@ -103,7 +103,7 @@ class Application extends Component {
 							<Link to="/" activeClassName="active"> Home </Link>
 							<Link to="/search" activeClassName="active"> Search </Link>
 							<Link to="/saved" activeClassName="active"> Saved </Link>
-							<br><br>
+							<br/><br/>
 							<button className="btn btn-danger" onClick={this.dropArticle}> Drop </button>
 					</div>
 					<div className="content well">

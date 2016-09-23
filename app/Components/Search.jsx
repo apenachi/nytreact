@@ -20,7 +20,7 @@ class Search extends React.Component{
 	render() {
 
 		return(
-			<div className="col-sm-8">
+			<div className="col-sm-8 col-sm-offset2">
 				<div className="panel panel-default">
 					<div className="panel-heading">
 						<h3 className="panel-title text-center">Search <strong>News</strong> ...!</h3>

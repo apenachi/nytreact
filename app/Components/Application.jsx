@@ -47,10 +47,15 @@ class Application extends Component {
 		console.log('saveArticle - Application');
 		helpers.postArticle(article)
 			.then(function(data){
+				// this.setState({	articles: data })
 				console.log('after mongodb')
-				this.setState({
-					articles: data
-				})				
+				helpers.getArticle()
+					.then(function(response){
+						if (response !== this.state.savedArticles){
+							console.log ("saveArticle-getArticle", response.data);
+							this.setState({	savedArticles: response.data })
+						}
+					}.bind(this))
 			}.bind(this))
 	}
 
@@ -59,23 +64,10 @@ class Application extends Component {
 		if(prevState.search != this.state.search){
 			helpers.fetchArticles(this.state.search)
 				.then(function(data){
-					if (data !== this.state.articles)
-					{
+					if (data !== this.state.articles){
 						console.log(data);
-						this.setState({
-							articles: data
-						})		
+						this.setState({ articles: data })		
 					}
-					console.log('componentDidUpdate - getArticle');
-					helpers.getArticle()
-						.then(function(response){
-							if (response !== this.state.savedArticles){
-								console.log ("savedArticles - componentDidUpdate", response.data);
-								this.setState({
-									savedArticles: response.data
-								})
-							}
-						}.bind(this))
 				}.bind(this))
 		}
 	}
@@ -87,11 +79,9 @@ class Application extends Component {
 			.then(function(response){
 				if (response != this.state.savedArticles){
 					console.log ("savedArticles - componentDidMount", response.data);
-					this.setState({
-						savedArticles: response.data
-					})
+					this.setState({ savedArticles: response.data })
 				}
-			}.bind(this))
+		}.bind(this))
 	}
 
 	render() {

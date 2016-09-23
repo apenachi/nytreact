@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "bundle": "webpack --config webpack.config.js",
+    "postinstall": "npm run bundle",
     "start": "node server.js"
   },
   "author": "apenachi",

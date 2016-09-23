@@ -102,8 +102,9 @@ class Application extends Component {
 							<h1 className="text-center">N Y T React</h1>
 							<Link to="/" activeClassName="active"> Home </Link>
 							<Link to="/search" activeClassName="active"> Search </Link>
-							<Link to="/saved" activeClassName="active"> Saved </Link>
+							<Link to="/saved" activeClassName="active"> Articles </Link>
 							<br/><br/>
+							<p>Proceed with caution ..this will <strong>delete</strong> from database</p>
 							<button className="btn btn-danger" onClick={this.dropArticle}> Drop </button>
 					</div>
 					<div className="content well">

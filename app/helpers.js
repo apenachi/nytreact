@@ -23,7 +23,17 @@ var helpers = {
 		})
 
 	},
-
+	// This function send a request to drop Article collection from DB
+	
+	getArticle: function(){
+		console.log('Send Request to drop Article Collection');
+		return axios.get('/api/drop')
+			.then(function(response){
+				console.log(response);
+				return response;
+			});
+	},
+	
 	// This function retrieves saved articles
 	getArticle: function(){
 		console.log('getArticle');

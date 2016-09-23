@@ -112,6 +112,7 @@ class Application extends Component {
 						{
 							cloneElement(children, {
 								articles: articles,
+								savedArticles: savedArticles,
 								setSearch: this.setSearch,
 								saveArticle: this.saveArticle
 							})

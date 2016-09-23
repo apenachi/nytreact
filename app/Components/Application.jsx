@@ -60,16 +60,16 @@ class Application extends Component {
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		console.log('componentDidUpdate - Application');
 		if(prevState.search != this.state.search){
 			helpers.fetchArticles(this.state.search)
 				.then(function(data){
 					if (data !== this.state.articles){
-						console.log(data);
+						console.log('componentDidUpdate - Application');
 						this.setState({ articles: data })		
 					}
+					this.setState({search:''})
 				}.bind(this))
-			this.setState({search:''})
+			
 		}
 	}
 
@@ -87,7 +87,7 @@ class Application extends Component {
 
 	render() {
 		const { children } = this.props;
-		const { articles, search, savedArticles } = this.state;
+		const { articles, savedArticles } = this.state;
 
 		return (
 				<div className="Application">
@@ -102,7 +102,6 @@ class Application extends Component {
 						{
 							cloneElement(children, {
 								articles: articles,
-								search: search,
 								setSearch: this.setSearch,
 								saveArticle: this.saveArticle
 							})

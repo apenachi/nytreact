@@ -16,7 +16,7 @@ class SavedPage extends Component {
 			<div className="SavedPage text-center">
 				<div className="row">
 					<h1>History Page</h1>
-					{/*<History savedArticles={savedArticles}/>*/}
+					<History savedArticles={savedArticles}/>
 				</div>
 			</div>
 		);

@@ -23,8 +23,8 @@ console.log(mongoUrl);
 
 var mongoDB = 'mongodb://' + mongoUrl + '/nytReactDB'
 
-// mongoose.connect('mongodb://localhost/nytReactDB', function(err) {
-mongoose.connect(mongoDB, function(err) {
+mongoose.connect('mongodb://localhost/nytReactDB', function(err) {
+// mongoose.connect(mongoDB, function(err) {
   if (err) {
     console.log ('ERROR connecting to: ' + mongoDB + ' . ' + err);
   } else {

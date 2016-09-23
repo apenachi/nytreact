@@ -15,7 +15,8 @@ class SavedPage extends Component {
 		return (
 			<div className="SavedPage text-center">
 				<div className="row">
-					<History savedArticles={savedArticles}/>
+					<h1>History Page</h1>
+					{/<History savedArticles={savedArticles}/>/}
 				</div>
 			</div>
 		);

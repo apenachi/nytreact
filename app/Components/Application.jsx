@@ -47,6 +47,7 @@ class Application extends Component {
 		helpers.dropArticle()
 			.then(function(response) {
 				console.log('from server: ', response);
+				this.setState({search:''});
 			}.bind(this))
 	}
 	saveArticle(article) {
@@ -117,13 +118,14 @@ class Application extends Component {
 								saveArticle: this.saveArticle
 							})
 						}
+						<ArticleList articles={articles} saveArticle={this.saveArticle}/>
 					</div>
-					<div className="content well">
+					{/*<div className="content well">
 						<ArticleList articles={articles} saveArticle={this.saveArticle}/>
 					</div>
 					<div className="content well">
 						<History savedArticles={savedArticles}/>
-					</div>
+					</div>*/}
 				</div>
 		);
 

@@ -41,7 +41,13 @@ class Application extends Component {
 	setSearch(search){
 		this.setState({search:search})
 	}
-
+	
+	dropArticle() {
+		helpers.dropArticle()
+			.then(function(response) {
+				console.log('from server: ', response);
+			}.bind(this))
+	}
 	saveArticle(article) {
 		console.log('saveArticle', article);
 		console.log('saveArticle - Application');
@@ -97,7 +103,8 @@ class Application extends Component {
 							<Link to="/" activeClassName="active"> Home </Link>
 							<Link to="/search" activeClassName="active"> Search </Link>
 							<Link to="/saved" activeClassName="active"> Saved </Link>
-							<Link to="/api/drop" activeClassName="active"> Drop </Link>
+							<br/>
+							<button className="btn btn-danger" onClick={this.dropArticle}> Drop </button>
 					</div>
 					<div className="content well">
 						{

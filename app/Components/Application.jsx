@@ -69,6 +69,7 @@ class Application extends Component {
 						this.setState({ articles: data })		
 					}
 				}.bind(this))
+			this.setState({search:''})
 		}
 	}
 

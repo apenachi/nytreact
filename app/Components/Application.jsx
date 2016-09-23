@@ -97,6 +97,7 @@ class Application extends Component {
 							<Link to="/" activeClassName="active"> Home </Link>
 							<Link to="/search" activeClassName="active"> Search </Link>
 							<Link to="/saved" activeClassName="active"> Saved </Link>
+							<Link to="/api/drop" activeClassName="active"> Drop </Link>
 					</div>
 					<div className="content well">
 						{

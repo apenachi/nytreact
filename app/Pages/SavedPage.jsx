@@ -20,7 +20,7 @@ class SavedPage extends Component {
 				</div>
 				<div className="row">
 					<History savedArticles={savedArticles}/>
-				<div className="row">
+				</div>
 			</div>
 		);
 
